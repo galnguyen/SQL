@@ -27,3 +27,10 @@ SELECT
   END AS new_col_return_value1_value2
 FROM table_name;
 --You can also string together multiple conditional statements with AND and OR the same way you might in a WHERE clause
+--6. DISTINCT: 
+--If you include two (or more) columns in a SELECT DISTINCT clause, your results will contain all of the unique pairs of those two columns:
+SELECT DISTINCT column1, column2
+FROM table_name;
+--You can use DISTINCT when performing an aggregation. You'll probably use it most commonly with the COUNT function.
+SELECT COUNT(DISTINCT column1) AS distinctcount_column1
+FROM table_name;
