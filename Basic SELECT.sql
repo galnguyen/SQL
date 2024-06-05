@@ -38,5 +38,10 @@ Conditions are combined by AND/OR*/
   SELECT * 
   FROM table_name
   WHERE coulmn_n IN (value1, value2, value3,...value_n);
-
+-- 8. AS: change column name:
+  SELECT column_n AS "Column N"
+  FROM table_name;
+--Or:
+  SELECT column_n AS column_x
+  FROM table_name;
 
