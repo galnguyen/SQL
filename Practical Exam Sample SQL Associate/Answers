@@ -1,0 +1,27 @@
+Answers:
+/Task 1/
+SELECT id,
+		COALESCE(customer_id, 0) AS customer_id,
+		COALESCE(category,'Other') AS category,
+		CASE WHEN status IN ('Open','In Progress','Resolved') THEN status ELSE 'Resolved' END AS status,
+		CASE WHEN creation_date BETWEEN '2023-01-01' AND '2023-12-31' THEN creation_date::date ELSE '2023-01-01'::date END AS creation_date,
+		COALESCE(response_time, 0) AS response_time,
+		COALESCE(ROUND(NULLIF(regexp_replace(resolution_time, '[^0-9.]', '', 'g')::numeric, 0), 2), 0) AS resolution_time
+FROM support
+
+/Task 2/
+SELECT category,
+		ROUND(MIN(response_time),2) AS min_response,
+		ROUND(MAX(response_time),2) AS max_response
+FROM support
+GROUP BY category
+
+/Task 3/
+SELECT  b.rating,
+		a.customer_id,
+		a.category,
+		a.response_time
+FROM support AS a
+JOIN survey AS b
+ON a.customer_id = b.customer_id
+WHERE a.category IN ('Bug','Installation Problem')
